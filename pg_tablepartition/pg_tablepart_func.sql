@@ -9,7 +9,7 @@ DECLARE
 	c_value character varying;
 	parent_table character varying;
 	child_table character varying;
-BEGIN
+BEGIN 
 	-- Initiate the variables.
 	c_field := TG_ARGV[1];
 	EXECUTE 'select new.'|| TG_ARGV[1] ||'::text from (select $1.*) new 'USING NEW into c_value;
