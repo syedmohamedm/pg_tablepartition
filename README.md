@@ -2,8 +2,6 @@ pg_tablepartition
 =================
 
 Automated table partitioning based on a single column.
-@author Syed Mohamed M
-v1.release
 
 
 pg_tablepart_func.sql 
