@@ -7,8 +7,19 @@ Automated table partitioning based on a single column.
 pg_tablepart_func.sql 
 =====================
 
-1. Copy this function in Postgres DB
-2. Use pg_dynamic_insert_trigger() along with two arguments namely, table name and the column name which you considered for the base of partitioning. For example if you want to partition a table 'employee_details' based on the column 'department'. Just create the base table employee_details with all fields and mappings. After creating execute the following query in Postgres,
-select * from pg_dynamic_insert_trigger('employee_details','department')
-3. That's it. Afterwards you need not bother about any operation related to partitioning. During each CRUD operation on 'employee_details' respective partitioning get handled automated.
+Assume that we need to partition a table employee_details based on department. 
+
+1. Copy pg_dynamic_insert_trigger() function in Postgres DB
+2. Create the base table 'employee_details' with all fields and mappings. 
+3. Create a trigger on employee_details, to trigger before every insert.
+      CREATE TRIGGER trigger_employee_details_insert
+      BEFORE INSERT
+      ON employee_details
+      FOR EACH ROW
+      EXECUTE PROCEDURE pg_dynamic_insert_trigger('employee_details', 'department');
+    Note : You need to pass the parent_table_name and column which has to be considered for partition in  pg_dynamic_insert_trigger()
+4. So on every insert of rows in parent table get partitioned based on their department field.
+
+
+<<<<<<END>>>>>>
 
