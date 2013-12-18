@@ -18,7 +18,7 @@ Assume that we need to partition a table employee_details based on department.
       FOR EACH ROW
       EXECUTE PROCEDURE pg_dynamic_insert_trigger('employee_details', 'department');
     Note : You need to pass the parent_table_name and column which has to be considered for partition in  pg_dynamic_insert_trigger()
-4. So on every insert of rows in parent table get partitioned based on their department field.
+4. So on every row insert into parent table get partitioned based on their department field.
 
 
 <<<<<<END>>>>>>
